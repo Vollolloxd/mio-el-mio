@@ -34,10 +34,6 @@ data class AlimentoDetectado(
 data class RegistroNutricionalDiario(
     val fecha: String,
     val alimentosConsumidos: List<AlimentoDetectado>,
-    val caloriasTotales: Double = 0.0,
-    val proteinas: Double = 0.0,
-    val carbohidratos: Double = 0.0,
-    val grasas: Double = 0.0
 ) : InformacionNutricional() {
     override val calorias: Double
         get() = alimentosConsumidos.sumOf { it.calorias }
