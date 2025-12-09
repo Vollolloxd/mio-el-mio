@@ -1,4 +1,4 @@
-package com.example.vollollomia.dominio.nutricion
+package com.example.vollollomia.models.dominio.nutricion
 
 /**
  * Clase base para toda información nutricional.
