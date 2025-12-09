@@ -1,0 +1,162 @@
+package com.example.vollollomia.ui.pantallas
+
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Button
+import androidx.compose.material.Card
+import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import com.example.vollollomia.models.dominio.nutricion.ObjetivoFisico
+import com.example.vollollomia.models.dominio.nutricion.PerfilUsuario
+import com.example.vollollomia.ui.tema.Colores
+
+@Composable
+fun PantallaDatosUsuario(
+    onVolverAlInicio: () -> Unit
+) {
+    var nombre by remember { mutableStateOf("") }
+    var altura by remember { mutableStateOf("") }
+    var peso by remember { mutableStateOf("") }
+    var objetivo by remember { mutableStateOf(ObjetivoFisico.DEFINICION) }
+    var nivelActividad by remember { mutableStateOf("moderado") }
+    var guardado by remember { mutableStateOf(false) }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Colores.fondoPrincipal)
+            .padding(16.dp)
+            .verticalScroll(rememberScrollState()),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(
+            text = "Datos del Usuario",
+            fontSize = 24.sp,
+            color = Colores.textoPrincipal,
+            modifier = Modifier.padding(16.dp)
+        )
+
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            backgroundColor = Colores.tarjetaFondo
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                OutlinedTextField(
+                    value = nombre,
+                    onValueChange = { nombre = it },
+                    label = { Text("Nombre") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    textColor = Colores.textoPrincipal
+                )
+
+                OutlinedTextField(
+                    value = altura,
+                    onValueChange = { altura = it },
+                    label = { Text("Altura (cm)") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    textColor = Colores.textoPrincipal
+                )
+
+                OutlinedTextField(
+                    value = peso,
+                    onValueChange = { peso = it },
+                    label = { Text("Peso (kg)") },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    textColor = Colores.textoPrincipal
+                )
+
+                Text(
+                    text = "Objetivo Físico",
+                    color = Colores.textoPrincipal,
+                    modifier = Modifier.padding(8.dp)
+                )
+
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    listOf(
+                        "Hipertrofia" to ObjetivoFisico.HIPERTROFIA,
+                        "Definición" to ObjetivoFisico.DEFINICION,
+                        "Resistencia" to ObjetivoFisico.RESISTENCIA
+                    ).forEach { (label, obj) ->
+                        Button(
+                            onClick = { objetivo = obj },
+                            modifier = Modifier
+                                .weight(1f)
+                                .padding(4.dp),
+                            backgroundColor = if (objetivo == obj) Colores.acentoPrincipal else Colores.botonSecundario
+                        ) {
+                            Text(label, fontSize = 12.sp)
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                if (guardado) {
+                    Text(
+                        text = "Datos guardados correctamente",
+                        color = Colores.colorExito,
+                        fontSize = 14.sp
+                    )
+                }
+            }
+        }
+
+        Spacer(modifier = Modifier.height(16.dp))
+
+        Button(
+            onClick = {
+                guardado = true
+                // Aquí se guardarían los datos
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+                .padding(vertical = 8.dp),
+            backgroundColor = Colores.acentoPrincipal
+        ) {
+            Text(
+                text = "Guardar Datos",
+                color = Colores.textoBoton,
+                fontSize = 16.sp
+            )
+        }
+
+        Button(
+            onClick = onVolverAlInicio,
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(48.dp)
+                .padding(vertical = 8.dp),
+            backgroundColor = Colores.botonSecundario
+        ) {
+            Text(
+                text = "Volver al Inicio",
+                color = Colores.textoPrincipal,
+                fontSize = 16.sp
+            )
+        }
+    }
+}
