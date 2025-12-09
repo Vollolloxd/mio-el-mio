@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import com.example.vollollomia.models.dominio.nutricion.ObjetivoFisico
 import com.example.vollollomia.ui.tema.Colores
 
+
 @Composable
 fun PantallaDatosUsuario(
     onVolverAlInicio: () -> Unit
