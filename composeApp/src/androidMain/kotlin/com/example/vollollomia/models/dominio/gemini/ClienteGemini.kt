@@ -5,6 +5,7 @@ import android.util.Base64
 import com.example.vollollomia.dominio.nutricion.AlimentoDetectado
 import com.example.vollollomia.dominio.ejercicio.PlanEjercicio
 import com.example.vollollomia.dominio.dieta.PlanDieta
+import com.example.vollollomia.dominio.dieta.TipoDieta
 import com.example.vollollomia.Configuracion
 import org.json.JSONObject
 import java.io.ByteArrayOutputStream
@@ -97,7 +98,9 @@ class ClienteGemini(
      */
     suspend fun generarPlanDieta(
         calorias: Double,
-        tipo: String
+        tipo: String,
+            usuarioId: String,
+            duracionDias: Int
     ): PlanDieta? = try {
         val solicitud = "Genera un plan de dieta $tipo con objetivo de $calorias calorías por día. " +
             "Incluye: tipo de dieta, objetivo calórico, descripción. Responde en JSON."
@@ -119,7 +122,7 @@ class ClienteGemini(
             jsonRequest.toString()
         )
         
-        extraerPlanDietaDeJSON(respuesta)
+        extraerPlanDietaDeJSON(respuesta, usuarioId, duracionDias)
     } catch (e: Exception) {
         e.printStackTrace()
         null
@@ -220,7 +223,11 @@ class ClienteGemini(
     /**
      * Extrae información de plan de dieta del JSON
      */
-    private fun extraerPlanDietaDeJSON(jsonResponse: String): PlanDieta? {
+private fun extraerPlanDietaDeJSON(
+        jsonResponse: String,
+        usuarioId: String,
+        duracionDias: Int
+    ): PlanDieta? {
         return try {
             val json = JSONObject(jsonResponse)
             val contenido = json.getJSONArray("candidates")
@@ -230,17 +237,23 @@ class ClienteGemini(
                 .getString("text")
             
             val dietJson = JSONObject(extraerJSON(contenido))
+            val ahora = System.currentTimeMillis().toString()
             PlanDieta(
-                tipoDieta = dietJson.optString("tipo", "Balanceada"),
-                objetivoCaloriasDiarias = dietJson.optDouble("calorias_diarias", 2000.0),
+                id = UUID.randomUUID().toString(),
+                usuarioId = usuarioId,
+                nombre = dietJson.optString("nombre", "Plan Dietético"),
                 descripcion = dietJson.optString("descripcion", ""),
-                dias = emptyList(),
-                recetas = emptyList()
+                tipo = TipoDieta.Balanceada,
+                duracionDias = duracionDias,
+                diasDieta = emptyList(),
+                fechaInicio = ahora,
+                fechaFin = ahora,
+                completado = false
             )
         } catch (e: Exception) {
             null
         }
-    }
+    }    }
 
     /**
      * Extrae un bloque JSON de texto que puede estar embebido
