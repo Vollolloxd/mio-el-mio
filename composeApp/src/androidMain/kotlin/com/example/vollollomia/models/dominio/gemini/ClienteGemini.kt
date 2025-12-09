@@ -243,7 +243,7 @@ private fun extraerPlanDietaDeJSON(
                 usuarioId = usuarioId,
                 nombre = dietJson.optString("nombre", "Plan Dietético"),
                 descripcion = dietJson.optString("descripcion", ""),
-                tipo = TipoDieta.Balanceada,
+                tipo = TipoDieta.Mantenimiento,
                 duracionDias = duracionDias,
                 diasDieta = emptyList(),
                 fechaInicio = ahora,
@@ -267,4 +267,3 @@ private fun extraerPlanDietaDeJSON(
             "{}"
         }
     }
-}
