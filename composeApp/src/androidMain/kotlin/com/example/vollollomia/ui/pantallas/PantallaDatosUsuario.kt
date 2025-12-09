@@ -30,7 +30,7 @@ fun PantallaDatosUsuario(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Colores.fondoPrincipal)
+            .background(Colores.Fondo)
             .padding(16.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -38,7 +38,7 @@ fun PantallaDatosUsuario(
         Text(
             text = "Datos del Usuario",
             fontSize = 24.sp,
-            color = Colores.textoPrincipal,
+            color = Colores.TextoPrincipal,
             modifier = Modifier.padding(16.dp)
         )
 
@@ -80,7 +80,7 @@ fun PantallaDatosUsuario(
 
                 Text(
                     text = "Objetivo Físico",
-                    color = Colores.textoPrincipal,
+                    color = Colores.TextoPrincipal,
                     modifier = Modifier.padding(8.dp)
                 )
 
@@ -111,7 +111,7 @@ fun PantallaDatosUsuario(
                 if (guardado) {
                     Text(
                         text = "Datos guardados correctamente",
-                        color = Colores.colorExito,
+                        color = Colores.ExitoVerde,
                         fontSize = 14.sp
                     )
                 }
@@ -132,7 +132,7 @@ fun PantallaDatosUsuario(
         ) {
             Text(
                 text = "Guardar Datos",
-                color = Colores.textoBoton,
+                color = Colores.Blanco,
                 fontSize = 16.sp
             )
         }
@@ -146,7 +146,7 @@ fun PantallaDatosUsuario(
         ) {
             Text(
                 text = "Volver al Inicio",
-                color = Colores.textoPrincipal,
+                color = Colores.TextoPrincipal,
                 fontSize = 16.sp
             )
         }
