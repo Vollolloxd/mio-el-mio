@@ -1,5 +1,6 @@
 # Progreso de Desarrollo - Aplicación Mio-el-Mio
 
+
 ## Visión General
 Aplicación Android para reconocimiento de alimentos mediante Gemini API, con gestión de nutrición, planes de ejercicio y dieta personalizada.
 
@@ -132,3 +133,31 @@ A crear en `dominio/gemini/`:
 2. Implementar navegación con Compose Navigation
 3. Integrar cámara para escaneo de alimentos
 4. Completar llamadas HTTP a Gemini API con parseo JSON
+
+## Progreso Actualizado (Sesión 3)
+
+### Pantallas Completadas
+- ✅ PantallaEscanerAlimentos.kt - Pantalla para capturar y analizar alimentos
+- ✅ PantallaDatosUsuario.kt - Formulario para datos personales del usuario
+- ✅ PantallaDieta.kt - Muestra el plan de dieta personalizado
+- ✅ PantallaEjercicios.kt - Muestra el plan de ejercicios
+
+### Navegación Completada
+- ✅ NavegadorApp.kt - Sistema de navegación con Compose Navigation
+- ✅ Rutas definidas: inicio, escaneo, datos_usuario, dieta, ejercicios
+- ✅ PantallaInicio actualizada con callbacks de navegación
+
+### Estado Actual
+**Arquitectura: 80% completada**
+- ✅ Modelos de dominio (nutrición, ejercicio, dieta)
+- ✅ Capa de persistencia (SharedPreferences)
+- ✅ Integración Gemini API (estructura y cliente)
+- ✅ Sistema de colores y tema visual
+- ✅ Pantallas/Composables (TODAS completadas)
+- ✅ Navegación (completada)
+
+### Pendientes
+1. Integrar cámara para escaneo de alimentos
+2. Completar llamadas HTTP a Gemini API con parseo JSON
+3. Pruebas y optimización
+4. Documentación final
