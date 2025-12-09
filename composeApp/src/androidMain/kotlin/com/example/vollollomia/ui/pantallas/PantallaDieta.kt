@@ -36,7 +36,7 @@ fun PantallaDieta(
         Text(
             text = "Plan de Dieta",
             fontSize = 24.sp,
-            color = Colores.textoPrincipal,
+            color = Colores.TextoPrincipal,
             modifier = Modifier.padding(16.dp)
         )
 
@@ -59,27 +59,27 @@ fun PantallaDieta(
                     Text(
                         text = "Tipo de Dieta: ${planDieta?.tipoDieta}",
                         fontSize = 18.sp,
-                        color = Colores.textoPrincipal
+                        color = Colores.TextoPrincipal
                     )
                     Spacer(modifier = Modifier.height(12.dp))
-                    Divider(color = Colores.textoSecundario)
+                    Divider(color = Colores.TextoSecundario)
                     Spacer(modifier = Modifier.height(12.dp))
                     
                     Text(
                         text = "Días del Plan: ${planDieta?.dias?.size ?: 0}",
-                        color = Colores.textoSecundario
+                        color = Colores.TextoSecundario
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     
                     Text(
                         text = "Objetivo Calórico: ${planDieta?.objetivoCaloriasDiarias} kcal/día",
-                        color = Colores.textoSecundario
+                        color = Colores.TextoSecundario
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     
                     Text(
                         text = "Descripción: ${planDieta?.descripcion}",
-                        color = Colores.textoSecundario,
+                        color = Colores.TextoSecundario,
                         fontSize = 12.sp
                     )
                 }
@@ -87,7 +87,7 @@ fun PantallaDieta(
         } else {
             Text(
                 text = "No hay plan de dieta generado aún",
-                color = Colores.textoSecundario,
+                color = Colores.TextoSecundario,
                 fontSize = 14.sp,
                 modifier = Modifier.padding(24.dp)
             )
@@ -131,7 +131,7 @@ fun PantallaDieta(
         ) {
             Text(
                 text = "Volver al Inicio",
-                color = Colores.textoPrincipal,
+                color = Colores.TextoPrincipal,
                 fontSize = 16.sp
             )
         }
