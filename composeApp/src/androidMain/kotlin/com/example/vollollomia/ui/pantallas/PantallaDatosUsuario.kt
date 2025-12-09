@@ -4,10 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Button
-import androidx.compose.material.Card
-import androidx.compose.material.OutlinedTextField
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,8 +46,7 @@ fun PantallaDatosUsuario(
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(16.dp),
-            backgroundColor = Colores.tarjetaFondo
+                .padding(16.dp)
         ) {
             Column(
                 modifier = Modifier.padding(16.dp),
@@ -59,8 +58,7 @@ fun PantallaDatosUsuario(
                     label = { Text("Nombre") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(8.dp),
-                    textColor = Colores.textoPrincipal
+                        .padding(8.dp)
                 )
 
                 OutlinedTextField(
@@ -69,8 +67,7 @@ fun PantallaDatosUsuario(
                     label = { Text("Altura (cm)") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(8.dp),
-                    textColor = Colores.textoPrincipal
+                        .padding(8.dp)
                 )
 
                 OutlinedTextField(
@@ -79,8 +76,7 @@ fun PantallaDatosUsuario(
                     label = { Text("Peso (kg)") },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(8.dp),
-                    textColor = Colores.textoPrincipal
+                        .padding(8.dp)
                 )
 
                 Text(
@@ -104,8 +100,7 @@ fun PantallaDatosUsuario(
                             onClick = { objetivo = obj },
                             modifier = Modifier
                                 .weight(1f)
-                                .padding(4.dp),
-                            backgroundColor = if (objetivo == obj) Colores.acentoPrincipal else Colores.botonSecundario
+                                .padding(4.dp)
                         ) {
                             Text(label, fontSize = 12.sp)
                         }
@@ -134,8 +129,7 @@ fun PantallaDatosUsuario(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp)
-                .padding(vertical = 8.dp),
-            backgroundColor = Colores.acentoPrincipal
+                .padding(vertical = 8.dp)
         ) {
             Text(
                 text = "Guardar Datos",
@@ -149,8 +143,7 @@ fun PantallaDatosUsuario(
             modifier = Modifier
                 .fillMaxWidth()
                 .height(48.dp)
-                .padding(vertical = 8.dp),
-            backgroundColor = Colores.botonSecundario
+                .padding(vertical = 8.dp)
         ) {
             Text(
                 text = "Volver al Inicio",
