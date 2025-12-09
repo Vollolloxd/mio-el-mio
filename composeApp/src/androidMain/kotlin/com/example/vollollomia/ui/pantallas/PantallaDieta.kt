@@ -13,8 +13,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.vollollomia.models.dominio.dieta.PlanDieta
-import com.example.vollollomia.models.dominio.dieta.Comida
+import com.example.vollollomia.dominio.dieta.PlanDieta
+import com.example.vollollomia.dominio.dieta.Comida
 import com.example.vollollomia.ui.tema.Colores
 
 @Composable
