@@ -2,9 +2,8 @@ package com.example.vollollomia.ui.pantallas
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Text
+import androidx.compose.material.Button
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -13,27 +12,23 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.vollollomia.ui.tema.Colores
 
-/**
- * Pantalla principal de Mio-el-Mio.
- * Muestra opciones de navegación a: escaneo, datos, dieta, ejercicios.
- */
 @Composable
 fun PantallaInicio(
-    onNavigarEscaneo: () -> Unit,
-    onNavigarDatos: () -> Unit,
-    onNavigarDieta: () -> Unit,
-    onNavigarEjercicios: () -> Unit
+    onNavEscaneo: () -> Unit = {},
+    onNavDatos: () -> Unit = {},
+    onNavDieta: () -> Unit = {},
+    onNavEjercicios: () -> Unit = {}
 ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Colores.Fondo)
+            .background(Colores.fondoPrincipal)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "Mio-el-Mio",
+            text = "Mio-el-Mío",
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             color = Colores.TemaPrincipal,
@@ -41,36 +36,52 @@ fun PantallaInicio(
         )
         
         Text(
-            text = "Tu compañero de nutrición y fitness",
-            fontSize = 14.sp,
-            color = Colores.TextoSecundario,
+            text = "Tu asistente de nutrición y fitness",
+            fontSize = 16.sp,
+            color = Colores.textoSecundario,
             modifier = Modifier.padding(bottom = 32.dp)
         )
         
-        BotonInicio("Escanear Alimentos", Colores.ProteinasRosa, onNavigarEscaneo)
-        BotonInicio("Mi Perfil", Colores.AzulPastel, onNavigarDatos)
-        BotonInicio("Mi Dieta", Colores.AmarilloPerla, onNavigarDieta)
-        BotonInicio("Mis Ejercicios", Colores.VerdePerla, onNavigarEjercicios)
+        BotonInicio(
+            texto = "Escáner de Alimentos",
+            onClick = onNavEscaneo
+        )
+        
+        BotonInicio(
+            texto = "Datos de Usuario",
+            onClick = onNavDatos
+        )
+        
+        BotonInicio(
+            texto = "Plan de Dieta",
+            onClick = onNavDieta
+        )
+        
+        BotonInicio(
+            texto = "Plan de Ejercicios",
+            onClick = onNavEjercicios
+        )
     }
 }
 
 @Composable
-private fun BotonInicio(
+fun BotonInicio(
     texto: String,
-    color: androidx.compose.ui.graphics.Color,
     onClick: () -> Unit
 ) {
     Button(
         onClick = onClick,
         modifier = Modifier
             .fillMaxWidth()
-            .height(48.dp)
+            .height(56.dp)
             .padding(vertical = 8.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = color,
-            contentColor = Colores.TextoPrincipal
-        )
+        backgroundColor = Colores.acentoPrincipal
     ) {
-        Text(text = texto, fontWeight = FontWeight.Bold)
+        Text(
+            text = texto,
+            color = Colores.textoBoton,
+            fontSize = 16.sp,
+            fontWeight = FontWeight.SemiBold
+        )
     }
 }
