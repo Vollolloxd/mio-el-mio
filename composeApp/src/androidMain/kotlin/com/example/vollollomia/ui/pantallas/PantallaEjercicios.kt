@@ -4,10 +4,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material.Button
-import androidx.compose.material.Card
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,21 +27,21 @@ fun PantallaEjercicios(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Colores.fondoPrincipal)
+            .background(Colores.Fondo)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         Text(
             text = "Plan de Ejercicios",
             fontSize = 24.sp,
-            color = Colores.textoPrincipal,
+            color = Colores.GrisClaroTextoPrincipal,
             modifier = Modifier.padding(16.dp)
         )
 
         if (generando) {
             Text(
                 text = "Generando plan de ejercicios...",
-                color = Colores.acentoPrincipal,
+                color = Colores.RosaClaro,
                 fontSize = 16.sp
             )
         } else if (planEjercicio != null) {
@@ -49,7 +49,7 @@ fun PantallaEjercicios(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                backgroundColor = Colores.tarjetaFondo
+                backgroundColor = Colores.Superficie
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp)
@@ -57,24 +57,24 @@ fun PantallaEjercicios(
                     Text(
                         text = "Nombre: ${planEjercicio?.nombre}",
                         fontSize = 18.sp,
-                        color = Colores.textoPrincipal
+                        color = Colores.GrisClaroTextoPrincipal
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "Duración: ${planEjercicio?.duracionSemanas} semanas",
-                        color = Colores.textoSecundario
+                        color = Colores.TextoSecundario
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "Sesiones por semana: ${planEjercicio?.sesionesxSemana}",
-                        color = Colores.textoSecundario
+                        color = Colores.TextoSecundario
                     )
                     Spacer(modifier = Modifier.height(8.dp))
-                    Divider(color = Colores.textoSecundario)
+                    Divider(color = Colores.TextoSecundario)
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
                         text = "Descripción: ${planEjercicio?.descripcion}",
-                        color = Colores.textoSecundario,
+                        color = Colores.TextoSecundario,
                         fontSize = 12.sp
                     )
                 }
@@ -82,7 +82,7 @@ fun PantallaEjercicios(
         } else {
             Text(
                 text = "No hay plan de ejercicios generado aún",
-                color = Colores.textoSecundario,
+                color = Colores.TextoSecundario,
                 fontSize = 14.sp,
                 modifier = Modifier.padding(24.dp)
             )
@@ -108,11 +108,11 @@ fun PantallaEjercicios(
                 .fillMaxWidth()
                 .height(48.dp)
                 .padding(vertical = 8.dp),
-            backgroundColor = Colores.acentoPrincipal
+            backgroundColor = Colores.RosaClaro
         ) {
             Text(
                 text = "Generar Plan",
-                color = Colores.textoBoton,
+                color = Colores.Blanco,
                 fontSize = 16.sp
             )
         }
@@ -123,11 +123,11 @@ fun PantallaEjercicios(
                 .fillMaxWidth()
                 .height(48.dp)
                 .padding(vertical = 8.dp),
-            backgroundColor = Colores.botonSecundario
+            backgroundColor = Colores.GrisClaro
         ) {
             Text(
                 text = "Volver al Inicio",
-                color = Colores.textoPrincipal,
+                color = Colores.GrisClaroTextoPrincipal,
                 fontSize = 16.sp
             )
         }
