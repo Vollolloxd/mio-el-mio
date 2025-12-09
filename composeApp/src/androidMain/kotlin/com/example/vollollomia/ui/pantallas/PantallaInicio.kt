@@ -2,8 +2,8 @@ package com.example.vollollomia.ui.pantallas
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.Button
-import androidx.compose.material.Text
+import androidx.compose.material3.Button
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +22,7 @@ fun PantallaInicio(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Colores.fondoPrincipal)
+            .background(Colores.Fondo)
             .padding(16.dp),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
@@ -38,7 +38,7 @@ fun PantallaInicio(
         Text(
             text = "Tu asistente de nutrición y fitness",
             fontSize = 16.sp,
-            color = Colores.textoSecundario,
+            color = Colores.TextoSecundario,
             modifier = Modifier.padding(bottom = 32.dp)
         )
         
@@ -75,11 +75,11 @@ fun BotonInicio(
             .fillMaxWidth()
             .height(56.dp)
             .padding(vertical = 8.dp),
-        backgroundColor = Colores.acentoPrincipal
+        backgroundColor = Colores.RosaClaro
     ) {
         Text(
             text = texto,
-            color = Colores.textoBoton,
+            color = Colores.Blanco,
             fontSize = 16.sp,
             fontWeight = FontWeight.SemiBold
         )
