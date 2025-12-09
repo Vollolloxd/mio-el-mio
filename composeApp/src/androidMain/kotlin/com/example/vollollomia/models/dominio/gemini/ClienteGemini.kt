@@ -10,6 +10,7 @@ import org.json.JSONObject
 import java.io.ByteArrayOutputStream
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.UUID
 
 /**
  * Cliente para interactuar con la API de Gemini.
@@ -62,7 +63,8 @@ class ClienteGemini(
      */
     suspend fun generarPlanEjercicio(
         objetivo: String,
-        duracionSemanas: Int
+        duracionSemanas: Int,
+        usuarioId: String
     ): PlanEjercicio? = try {
         val solicitud = "Genera un plan de ejercicio de $duracionSemanas semanas para objetivo de $objetivo. " +
             "Incluye: nombre del plan, duración, sesiones por semana, descripción. Responde en JSON."
@@ -84,7 +86,7 @@ class ClienteGemini(
             jsonRequest.toString()
         )
         
-        extraerPlanEjercicioDeJSON(respuesta, objetivo)
+        extraerPlanEjercicioDeJSON(respuesta, usuarioId, duracionSemanas)
     } catch (e: Exception) {
         e.printStackTrace()
         null
@@ -187,7 +189,7 @@ class ClienteGemini(
     /**
      * Extrae información de plan de ejercicio del JSON
      */
-    private fun extraerPlanEjercicioDeJSON(jsonResponse: String, objetivo: String): PlanEjercicio? {
+    private fun extraerPlanEjercicioDeJSON(jsonResponse: String, usuarioId: String, duracionSemanas: Int): PlanEjercicio? {
         return try {
             val json = JSONObject(jsonResponse)
             val contenido = json.getJSONArray("candidates")
@@ -197,13 +199,18 @@ class ClienteGemini(
                 .getString("text")
             
             val planJson = JSONObject(extraerJSON(contenido))
+            val ahora = System.currentTimeMillis().toString()
             PlanEjercicio(
-                nombre = planJson.optString("nombre", "Plan de Entrenamiento"),
-                duracionSemanas = planJson.optInt("duracion_semanas", 12),
-                sesionesxSemana = planJson.optInt("sesiones_semana", 3),
+                id = UUID.randomUUID().toString(),
+                usuarioId = usuarioId,
+                nombrePlan = planJson.optString("nombre", "Plan de Entrenamiento"),
                 descripcion = planJson.optString("descripcion", ""),
+                duracionSemanas = duracionSemanas,
+                diasPorSemana = planJson.optInt("sesiones_semana", 3),
                 sesiones = emptyList(),
-                objetivo = objetivo
+                fechaInicio = ahora,
+                fechaFin = ahora,
+                completado = false
             )
         } catch (e: Exception) {
             null
