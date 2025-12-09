@@ -35,29 +35,5 @@ fun NavegadorApp() {
                 onNavEjercicios = { navController.navigate(Rutas.EJERCICIOS) }
             )
         }
-        
-        composable(Rutas.ESCANEO) {
-            PantallaEscanerAlimentos(
-                onVolverAlInicio = { navController.navigate(Rutas.INICIO) }
-            )
-        }
-        
-        composable(Rutas.DATOS_USUARIO) {
-            PantallaDatosUsuario(
-                onVolverAlInicio = { navController.navigate(Rutas.INICIO) }
-            )
-        }
-        
-        composable(Rutas.DIETA) {
-            PantallaDieta(
-                onVolverAlInicio = { navController.navigate(Rutas.INICIO) }
-            )
-        }
-        
-        composable(Rutas.EJERCICIOS) {
-            PantallaEjercicios(
-                onVolverAlInicio = { navController.navigate(Rutas.INICIO) }
-            )
-        }
     }
 }
