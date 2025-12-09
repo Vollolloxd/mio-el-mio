@@ -89,3 +89,46 @@ A crear en `dominio/gemini/`:
 - ⏳ UI/Pantallas (pendiente)
 - ⏳ Integración Gemini (pendiente)
 - ⏳ Navegación y temas (pendiente)
+
+## Progreso Actualizado (Sesion 2)
+
+### ✅ Integración de Gemini API (Completada)
+1. **ClienteGemini.kt** (`dominio/gemini/`)
+   - Cliente para conectar con Gemini API v1beta
+   - Métodos para:
+     - `analizarImagenAlimento(bitmap)`: Detecta alimentos de fotos
+     - `generarPlanEjercicio(perfil)`: Crea planes personalizados
+     - `generarPlanDieta(perfil, calorias)`: Genera planes dietéticos
+
+2. **UtilidadesGemini.kt** (`dominio/gemini/`)
+   - Funciones de parseo y validación de respuestas JSON
+   - Ejemplos de datos para pruebas
+   - Cálculo de macronutrientes
+
+### ✅ Capa de UI/Tema (En Progreso)
+1. **Colores.kt** (`ui/tema/`)
+   - Paleta completa de colores pastel
+   - Colores primarios: Rosa, Azul, Verde
+   - Colores para nutrientes: Proteínas, Carbohidratos, Grasas, Fibra
+   - Colores para estados: Exito, Advertencia, Error, Info
+   - Tema claro por defecto
+
+## Estado General Actualizado
+**Arquitectura: 65% completada**
+- ✅ Modelos de dominio (nutrición, ejercicio, dieta)
+- ✅ Capa de persistencia (SharedPreferences)
+- ✅ Integración Gemini API (estructura y cliente)
+- ✅ Sistema de colores y tema visual
+- ⏳ Pantallas/Composables (en progreso)
+- ⏳ Navegación (pendiente)
+
+## Próximos Pasos
+1. Crear pantallas principales:
+   - PantallaInicio.kt
+   - PantallaEscanerAlimentos.kt
+   - PantallaDatosUsuario.kt
+   - PantallaDieta.kt
+   - PantallaEjercicios.kt
+2. Implementar navegación con Compose Navigation
+3. Integrar cámara para escaneo de alimentos
+4. Completar llamadas HTTP a Gemini API con parseo JSON
