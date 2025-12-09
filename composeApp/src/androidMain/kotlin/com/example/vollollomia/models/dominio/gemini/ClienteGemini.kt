@@ -39,7 +39,7 @@ class ClienteGemini(
                             })
                         })
                         put(JSONObject().apply {
-                            put("text", "Analiza esta imagen de comida. Proporciona: nombre del alimento, cantidad estimada, calorías, proteínas (g), carbohidratos (g), grasas (g), fibra (g), sodio (mg), potasio (mg). Responde en formato JSON.")
+                            put("text", "Analiza esta imagen de comida. Proporciona: nombre del alimento, cantidad estimada, calorías, proteínas (g), carbohidratos (g), grasas (g), fibra (g). Responde en formato JSON.")
                         })
                     })
                 })
@@ -171,14 +171,13 @@ class ClienteGemini(
             
             val foodJson = JSONObject(extraerJSON(contenido))
             AlimentoDetectado(
-                nombreAlimento = foodJson.optString("nombre", "Alimento"),
+                nombre = foodJson.optString("nombre", "Alimento"),
+                descripcion = "",
                 calorias = foodJson.optDouble("calorias", 0.0),
                 proteinas = foodJson.optDouble("proteinas", 0.0),
                 carbohidratos = foodJson.optDouble("carbohidratos", 0.0),
                 grasas = foodJson.optDouble("grasas", 0.0),
-                fibra = foodJson.optDouble("fibra", 0.0),
-                sodio = foodJson.optDouble("sodio", 0.0),
-                potasio = foodJson.optDouble("potasio", 0.0)
+                fibra = foodJson.optDouble("fibra", 0.0)
             )
         } catch (e: Exception) {
             null
