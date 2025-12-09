@@ -206,3 +206,58 @@ La aplicación Mio-el-Mío está **completamente desarrollada e integrada**. Tod
 - Sistema de navegación funcional
 - Integración completa con API Gemini
 - Manejo de cámara y permisos de Android
+
+## Sesión de Depuración - Correcciones de Constructores
+
+**Fecha:** Sesión actual
+
+**Problemas identificados y resueltos:**
+
+### 1. Error en PlanDieta.kt - Receta data class
+- **Error:** "Primary constructor of data class must only have property ('val' / 'var') parameters" en línea con `val modo Preparacion: List<String>`
+- **Causa:** Identificador con espacio ("modo Preparacion") y línea rota en la siguiente propiedad
+- **Solución:** 
+  - Renombrar `modo Preparacion` a `modoPreparacion`
+  - Restaurar salto de línea correcto
+  - Agregar `val` faltante en `tiempoPreparacionMinutos`
+- **Archivo actualizado:** `composeApp/src/androidMain/kotlin/com/example/vollollomia/models/dominio/dieta/PlanDieta.kt`
+- **Commit:** `fix: corregir sintaxis de Receta data class - cambiar 'modo Preparacion' a 'modoPreparacion'`
+
+### 2. Error en ClienteGemini.kt - Parámetros de AlimentoDetectado
+- **Error:** "No parameter with name 'nombreAlimento' found"
+- **Causa:** Mismatch entre data class `AlimentoDetectado` (que usa `nombre`) y la llamada al constructor (que usaba `nombreAlimento`). Además, se pasaban parámetros inexistentes como `sodio` y `potasio`
+- **Solución:**
+  - Cambiar `nombreAlimento` a `nombre`
+  - Agregar `descripcion = ""`
+  - Remover argumentos `sodio` y `potasio`
+- **Método afectado:** `extraerAlimentoDeJSON`
+- **Commit:** `fix: corregir ClienteGemini - cambiar 'nombreAlimento' a 'nombre' y remover sodio/potasio`
+
+### 3. Error en ClienteGemini.kt - Parámetros de PlanEjercicio
+- **Error:** "No parameter with name 'objetivo' found" + "No value passed for parameter 'id', 'usuarioId', 'nombrePlan', 'diasPorSemana', 'fechaInicio', 'fechaFin'"
+- **Causa:** Firma de data class `PlanEjercicio` cambió o no coincidía con la forma en que se estaba instantiando en `extraerPlanEjercicioDeJSON`
+- **Solución:**
+  - Reescribir completamente `ClienteGemini.kt` para alinearse con todos los parámetros requeridos de `PlanEjercicio`
+  - Agregar `import java.util.UUID` para generar IDs únicos
+  - Cambiar package a `com.example.vollollomia.dominio.gemini` (consistente con arquitectura de dominio)
+  - Actualizar firma de `generarPlanEjercicio` para aceptar: `(objetivo: String, duracionSemanas: Int, usuarioId: String)`
+  - Actualizar `extraerPlanEjercicioDeJSON` con firma: `(jsonResponse: String, usuarioId: String, duracionSemanas: Int)`
+  - Generar timestamps para `fechaInicio` y `fechaFin` usando `System.currentTimeMillis().toString()`
+  - Instantiar `PlanEjercicio` con TODOS los parámetros requeridos:
+    - `id = UUID.randomUUID().toString()`
+    - `usuarioId = usuarioId`
+    - `nombrePlan` extraído de JSON
+    - `descripcion` extraído de JSON
+    - `duracionSemanas = duracionSemanas`
+    - `diasPorSemana` extraído de JSON
+    - `sesiones = emptyList()`
+    - `fechaInicio` y `fechaFin` con timestamp
+    - `completado = false`
+- **Archivo actualizado:** `composeApp/src/androidMain/kotlin/com/example/vollollomia/models/dominio/gemini/ClienteGemini.kt`
+- **Commit:** `fix: corregir ClienteGemini - alinear parametros de PlanEjercicio y agregar UUID`
+
+**Estado actual:**
+- ✅ PlanDieta.kt compilando correctamente
+- ✅ ClienteGemini.kt compilando correctamente con todos los constructores alineados
+- ⏳ Próximo paso: Ejecutar build en IntelliJ para confirmar que no hay más errores de compilación
+- ⏳ Después: Integración completa con UI y pruebas de flujo end-to-end con API Gemini real
