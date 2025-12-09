@@ -28,7 +28,7 @@ fun PantallaDieta(
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(Colores.fondoPrincipal)
+            .background(Colores.Fondo)
             .padding(16.dp)
             .verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally
@@ -43,7 +43,7 @@ fun PantallaDieta(
         if (generando) {
             Text(
                 text = "Generando plan de dieta...",
-                color = Colores.acentoPrincipal,
+                color = Colores.RosaClaro,
                 fontSize = 16.sp
             )
         } else if (planDieta != null) {
@@ -51,7 +51,7 @@ fun PantallaDieta(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
-                backgroundColor = Colores.tarjetaFondo
+                backgroundColor = Colores.Superficie
             ) {
                 Column(
                     modifier = Modifier.padding(16.dp)
@@ -112,11 +112,11 @@ fun PantallaDieta(
                 .fillMaxWidth()
                 .height(48.dp)
                 .padding(vertical = 8.dp),
-            backgroundColor = Colores.acentoPrincipal
+            backgroundColor = Colores.RosaClaro
         ) {
             Text(
                 text = "Generar Plan",
-                color = Colores.textoBoton,
+                color = Colores.Blanco,
                 fontSize = 16.sp
             )
         }
@@ -127,7 +127,7 @@ fun PantallaDieta(
                 .fillMaxWidth()
                 .height(48.dp)
                 .padding(vertical = 8.dp),
-            backgroundColor = Colores.botonSecundario
+            backgroundColor = Colores.GrisClaro
         ) {
             Text(
                 text = "Volver al Inicio",
