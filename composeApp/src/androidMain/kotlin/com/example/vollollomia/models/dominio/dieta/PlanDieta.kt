@@ -20,8 +20,9 @@ data class Receta(
     val nombre: String,
     val descripcion: String,
     val ingredientes: List<Ingrediente>,
-    val modo Preparacion: List<String>,
-    val tiempoPreparacionMinutos: Int,
+    val modoPreparacion: List<String>,    
+        val tiempoPreparacionMinutos: Int,
+    
     val porciones: Int,
     val caloriasPorPorcion: Double,
     val proteinasPorPorcion: Double,
