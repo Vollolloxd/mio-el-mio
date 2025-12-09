@@ -23,7 +23,7 @@ fun PantallaDatosUsuario(
     var nombre by remember { mutableStateOf("") }
     var altura by remember { mutableStateOf("") }
     var peso by remember { mutableStateOf("") }
-    var objetivo by remember { mutableStateOf(ObjetivoFisico.DEFINICION) }
+    var objetivo by remember { mutableStateOf<ObjetivoFisico>(ObjetivoFisico.Definicion) }
     var nivelActividad by remember { mutableStateOf("moderado") }
     var guardado by remember { mutableStateOf(false) }
 
@@ -91,9 +91,9 @@ fun PantallaDatosUsuario(
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     listOf(
-                        "Hipertrofia" to ObjetivoFisico.HIPERTROFIA,
-                        "Definición" to ObjetivoFisico.DEFINICION,
-                        "Resistencia" to ObjetivoFisico.RESISTENCIA
+                        "Hipertrofia" to ObjetivoFisico.HiperTrofia,
+                        "Definición" to ObjetivoFisico.Definicion,
+                        "Ganancia de Masa" to ObjetivoFisico.GananciaDeMasa
                     ).forEach { (label, obj) ->
                         Button(
                             onClick = { objetivo = obj },
